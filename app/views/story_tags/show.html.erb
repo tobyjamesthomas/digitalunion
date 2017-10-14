@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Story:</strong>
+  <%= @story_tag.story %>
+</p>
+
+<p>
+  <strong>Tag:</strong>
+  <%= @story_tag.tag %>
+</p>
+
+<%= link_to 'Edit', edit_story_tag_path(@story_tag) %> |
+<%= link_to 'Back', story_tags_path %>
