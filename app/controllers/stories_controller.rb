@@ -10,6 +10,7 @@ class StoriesController < ApplicationController
   # GET /stories/1
   # GET /stories/1.json
   def show
+    @idea = Idea.new
   end
 
   # GET /stories/new
@@ -25,6 +26,8 @@ class StoriesController < ApplicationController
   # POST /stories.json
   def create
     @story = Story.new(story_params)
+    byebug
+    @story.user_id = current_user.id
 
     respond_to do |format|
       if @story.save

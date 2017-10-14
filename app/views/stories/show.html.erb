@@ -15,5 +15,14 @@
   <%= @story.body %>
 </p>
 
+<p>
+  <strong>Comments:</strong>
+  <% @story.ideas.each do |idea| %>
+    <p><%= idea.content %></p>
+  <% end %>
+</p>
+
+<%= render 'ideas/form' %>
+
 <%= link_to 'Edit', edit_story_path(@story) %> |
 <%= link_to 'Back', stories_path %>
