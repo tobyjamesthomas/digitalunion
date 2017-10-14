@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :story_statuses
+  resources :statuses
   resources :story_tags
   resources :tags
   resources :ideas
