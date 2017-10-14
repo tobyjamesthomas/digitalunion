@@ -9,3 +9,5 @@ class CreateStories < ActiveRecord::Migration
     end
   end
 end
+
+#TEST
