@@ -26,7 +26,6 @@ class StoriesController < ApplicationController
   # POST /stories.json
   def create
     @story = Story.new(story_params)
-    byebug
     @story.user_id = current_user.id
 
     respond_to do |format|
