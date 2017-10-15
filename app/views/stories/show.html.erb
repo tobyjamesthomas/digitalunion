@@ -1,30 +1,69 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @story.title %>
-</p>
+<div class="container">
+  <div class="show-story">
 
-<p>
-  <strong>Score:</strong>
-  <%= @story.score %>
-</p>
+    <div class="story-container">
+      <div class="story-header">
+        <div class="upvote-button">
+          <i class="material-icons got-help">expand_less</i>
+          <p>Upvote</p>
+        </div>
+        <table>
+          <tbody>
+            <tr>
+              <td class="count">
+                <div class="count-text">
+                  <span><%= @story.score %></span>
+                  <p>Votes</p>
+                </div>
+              </td>
+              <td class="title">
+                <h1><%= @story.title %></h1>
+                <div class="tags">
+                  <% @story.story_tags.each do |story_tag| %>
+                    <span class="tag"><%= story_tag.tag.name %></span>
+                  <% end %>
+                </div>
+              </td>
+              <% if @story.status.present? %>
+                <td class="status">
+                  <div class="status-text">
+                    <% if @story.status.id == 1 %>
+                      <i class="material-icons escalated">flash_on</i>
+                      <p>Escalated</p>
+                    <% elsif @story.status.id == 2 %>
+                      <img src="/hands.png"/>
+                      <p>Need support</p>
+                    <% elsif @story.status.id == 3 %>
+                      <i class="material-icons got-help">done</i>
+                      <p>Got help</p>
+                    <% else %>
+                      <i class="material-icons got-a-job">star</i>
+                      <p>Got a job</p>
+                    <% end %>
+                  </div>
+                </td>
+              <% else %>
+                <td></td>
+              <% end %>
+            </tr>
+            <tr>
+              <td></td>
+              <td class="story-body">
+                <%= @story.body %>
+              </td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 
-<p>
-  <strong>Status:</strong>
-  <% if @story.status.present? %>
-    <%= @story.status.name %>
-  <% else %>
-    <%= "No status" %>
-  <% end %>
-</p>
+  </div>
+</div>
 
-<p>
-  <strong>Body:</strong>
-  <%= @story.body %>
-</p>
-
-<p>
+<!-- <p>
   <strong>Comments:</strong>
   <% @story.ideas.each do |idea| %>
     <p><%= idea.content %></p>
@@ -34,4 +73,4 @@
 <%= render 'ideas/form' %>
 
 <%= link_to 'Edit', edit_story_path(@story) %> |
-<%= link_to 'Back', stories_path %>
+<%= link_to 'Back', stories_path %> -->
