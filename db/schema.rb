@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171014223914) do
+ActiveRecord::Schema.define(version: 20171015021346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,19 +40,11 @@ ActiveRecord::Schema.define(version: 20171014223914) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "user_id"
-  end
-
-  add_index "stories", ["user_id"], name: "index_stories_on_user_id", using: :btree
-
-  create_table "story_statuses", force: :cascade do |t|
-    t.integer  "story_id"
     t.integer  "status_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
-  add_index "story_statuses", ["status_id"], name: "index_story_statuses_on_status_id", using: :btree
-  add_index "story_statuses", ["story_id"], name: "index_story_statuses_on_story_id", using: :btree
+  add_index "stories", ["status_id"], name: "index_stories_on_status_id", using: :btree
+  add_index "stories", ["user_id"], name: "index_stories_on_user_id", using: :btree
 
   create_table "story_tags", force: :cascade do |t|
     t.integer  "story_id"
@@ -92,9 +84,8 @@ ActiveRecord::Schema.define(version: 20171014223914) do
 
   add_foreign_key "ideas", "stories"
   add_foreign_key "ideas", "users"
+  add_foreign_key "stories", "statuses"
   add_foreign_key "stories", "users"
-  add_foreign_key "story_statuses", "statuses"
-  add_foreign_key "story_statuses", "stories"
   add_foreign_key "story_tags", "stories"
   add_foreign_key "story_tags", "tags"
 end
