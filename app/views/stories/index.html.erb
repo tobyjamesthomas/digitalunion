@@ -51,21 +51,28 @@
                   <p>Ideas</p>
                 </div>
               </td>
-              <td><%= link_to story.title, story %></td>
+              <td class="title">
+                <%= link_to story.title, story %>
+                <div class="tags">
+                  <% story.story_tags.each do |story_tag| %>
+                    <span class="tag"><%= story_tag.tag.name %></span>
+                  <% end %>
+                </div>
+              </td>
               <% if story.status.present? %>
-                <td>
-                  <div class="status">
+                <td class="status">
+                  <div class="status-text">
                     <% if story.status.id == 1 %>
-                      <i class="material-icons">flash_on</i>
+                      <i class="material-icons escalated">flash_on</i>
                       <p>Escalated</p>
                     <% elsif story.status.id == 2 %>
                       <img src="/hands.png"/>
                       <p>Need support</p>
                     <% elsif story.status.id == 3 %>
-                      <i class="material-icons">done</i>
+                      <i class="material-icons got-help">done</i>
                       <p>Got help</p>
                     <% else %>
-                      <i class="material-icons">face</i>
+                      <i class="material-icons got-a-job">star</i>
                       <p>Got a job</p>
                     <% end %>
                   </div>
