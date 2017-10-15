@@ -1,89 +1,86 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container">
- <div class="mass-head">
-	 <h1>How it Works</h1>
-	 <div class="row">
-		 <div class="col-4">
-			 <div class="img-h">
-				 <img src="https://i.imgur.com/i92J0mF.png" alt="tell story" width="50%">
-			 </div>
-			 <h4>Tell your employment story </h4>
-			 <p>Create a story and tell us about your journey. Our community wants to hear from you, and we want to help! </p>
-		 </div>
-		 <div class="col-4">
-			 <div class="img-h">
-				 <img src="https://i.imgur.com/8eYIpm0.png" alt="tags" width="50%">
-			 </div>
-			 <h4>Tag your story</h4>
-			 <p>Band together! Tag it and help us understand the causes of your unemployment.</p>
-		 </div>
-		 <div class="col-4">
-			 <div class="img-h">
-				 <img src="https://i.imgur.com/m3nPxdV.png" alt="support" width="50%">
-			 </div>
-			 <h4>Work to support your problem</h4>
-			 <p>Our community helps you find a job, or our Advocates may escalate it to a systemic level! Help everyone!</p>
-		 </div>
-	 </div>
- </div>
+  <div class="mass-head">
+    <h1>How it Works</h1>
+    <div class="row">
+      <div class="col-4">
+        <div class="img-h">
+          <img src="https://i.imgur.com/i92J0mF.png" alt="tell story" width="50%">
+        </div>
+        <h4>Tell your employment story </h4>
+        <p>Create a story and tell us about your journey. Our community wants to hear from you, and we want to help! </p>
+      </div>
+      <div class="col-4">
+        <div class="img-h">
+          <img src="https://i.imgur.com/8eYIpm0.png" alt="tags" width="50%">
+        </div>
+        <h4>Tag your story</h4>
+        <p>Band together! Tag it and help us understand the causes of your unemployment.</p>
+      </div>
+      <div class="col-4">
+        <div class="img-h">
+          <img src="https://i.imgur.com/m3nPxdV.png" alt="support" width="50%">
+        </div>
+        <h4>Work to support your problem</h4>
+        <p>Our community helps you find a job, or our Advocates may escalate it to a systemic level! Help everyone!</p>
+      </div>
+    </div>
+  </div>
+  <div class="explore-stories">
 
- <div class="row">
-	 <h1>Explore our Stories</h1>
-	 <a class="btn btn-primary" href="#" role="button">+ Tell a Story</a>
- </div>
+    <div class="row">
+      <h1>Explore our Stories</h1>
+      <%= link_to '+ Tell a Story', new_story_path, class: "btn btn-primary" %>
+    </div>
 
- <div>
-	 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-		 <li class="nav-item">
-			 <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-expanded="true">Home</a>
-		 </li>
-		 <li class="nav-item">
-			 <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-expanded="true">Profile</a>
-		 </li>
-		 <li class="nav-item dropdown">
-			 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-			 <div class="dropdown-menu">
-				 <a class="dropdown-item" id="pills-dropdown1-tab" href="#pills-dropdown1" role="tab" data-toggle="pill" aria-controls="pills-dropdown1">@fat</a>
-				 <a class="dropdown-item" id="pills-dropdown2-tab" href="#pills-dropdown2" role="tab" data-toggle="pill" aria-controls="pills-dropdown2">@mdo</a>
-			 </div>
-		 </li>
-	 </ul>
-	 <div class="tab-content" id="pills-tabContent">
-		 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">...</div>
-		 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-		 <div class="tab-pane fade" id="pills-dropdown1" role="tabpanel" aria-labelledby="pills-dropdown1-tab">...</div>
-		 <div class="tab-pane fade" id="pills-dropdown2" role="tabpanel" aria-labelledby="pills-dropdown2-tab">...</div>
-	 </div>
- </div>
+    <div class="stories-table">
+      <table>
+        <tbody>
+          <% @stories.each do |story| %>
+            <tr>
+              <td class="count">
+                <div class="count-text">
+                  <span><%= story.score %></span>
+                  <p>Votes</p>
+                </div>
+              </td>
+              <td class="count">
+                <div class="count-text">
+                  <span><%= story.ideas.count %></span>
+                  <p>Ideas</p>
+                </div>
+              </td>
+              <td><%= link_to story.title, story %></td>
+              <% if story.status.present? %>
+                <td>
+                  <div class="status">
+                    <% if story.status.id == 1 %>
+                      <i class="material-icons">flash_on</i>
+                      <p>Escalated</p>
+                    <% elsif story.status.id == 2 %>
+                      <img src="/hands.png"/>
+                      <p>Need support</p>
+                    <% elsif story.status.id == 3 %>
+                      <i class="material-icons">done</i>
+                      <p>Got help</p>
+                    <% else %>
+                      <i class="material-icons">face</i>
+                      <p>Got a job</p>
+                    <% end %>
+                  </div>
+                </td>
+              <% else %>
+                <td></td>
+              <% end %>
+              <!-- <td><%= link_to 'Edit', edit_story_path(story) %></td>
+              <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
 </div>
-
-<h1>Listing Stories</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Score</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @stories.each do |story| %>
-      <tr>
-        <td><%= story.title %></td>
-        <td><%= story.score %></td>
-        <td><%= story.body %></td>
-        <td><%= link_to 'Show', story %></td>
-        <td><%= link_to 'Edit', edit_story_path(story) %></td>
-        <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Story', new_story_path %>
