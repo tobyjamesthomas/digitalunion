@@ -11,6 +11,15 @@
 </p>
 
 <p>
+  <strong>Status:</strong>
+  <% if @story.status.present? %>
+    <%= @story.status.name %>
+  <% else %>
+    <%= "No status" %>
+  <% end %>
+</p>
+
+<p>
   <strong>Body:</strong>
   <%= @story.body %>
 </p>

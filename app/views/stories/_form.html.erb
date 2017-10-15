@@ -21,7 +21,11 @@
   </div>
   <div class="field">
     <%= f.label :status %><br>
-    <%= f.select :status_id, Status.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
+    <%= f.select :status_id, Status.all.collect {|x| [x.name, x.id]}, {}, :multiple => false %>
+  </div>
+  <div class="field">
+    <%= f.label :tags %><br>
+    <%= f.select :tag_ids, Tag.all.collect {|x| [x.name, x.id]}, {}, :multiple => true %>
   </div>
   <div class="field">
     <%= f.label :body %><br>

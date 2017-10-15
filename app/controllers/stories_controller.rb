@@ -31,6 +31,14 @@ class StoriesController < ApplicationController
 
     respond_to do |format|
       if @story.save
+        tag_ids = story_params[:tag_ids].drop(1)
+
+        if !tag_ids.empty?
+          tag_ids.each do |tag_id|
+            StoryTag.create(story_id: @story.id, tag_id: tag_id)
+          end
+        end
+        
         format.html { redirect_to @story, notice: 'Story was successfully created.' }
         format.json { render :show, status: :created, location: @story }
       else
@@ -43,6 +51,15 @@ class StoriesController < ApplicationController
   # PATCH/PUT /stories/1
   # PATCH/PUT /stories/1.json
   def update
+    tag_ids = story_params[:tag_ids].drop(1)
+
+    @story.story_tags.destroy_all
+    if !tag_ids.empty?
+      tag_ids.each do |tag_id|
+        StoryTag.create(story_id: @story.id, tag_id: tag_id)
+      end
+    end
+
     respond_to do |format|
       if @story.update(story_params)
         format.html { redirect_to @story, notice: 'Story was successfully updated.' }
@@ -72,6 +89,6 @@ class StoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def story_params
-      params.require(:story).permit(:title, :score, :body)
+      params.require(:story).permit(:title, :score, :body, :status_id, :tag_ids => [])
     end
 end
