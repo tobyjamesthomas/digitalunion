@@ -11,15 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field hidden">
-    <%= f.label :story_id %><br>
-    <%= f.text_field :story_id, :value => local_assigns[:story_id] %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br>
-    <%= f.text_field :content %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="comments">
+    <div class="paper-container">
+      <h2>Share your Support</h2>
+      <div class="field hidden">
+        <%= f.label :story_id %><br>
+        <%= f.text_field :story_id, :value => local_assigns[:story_id] %>
+      </div>
+      <div class="form-group">
+        <label>Ideas</label>
+        <%= f.text_area :content, :class => "form-control", :placeholder => "Write your ideas here..." %>
+      </div>
+      <div class="row">
+        <div class="col-8">
+          <img src="https://i.imgur.com/ts4hEXb.png" width="600" alt="types">
+        </div>
+      </div>
+      <%= f.submit :class => 'btn btn-primary' %>
+    </div>
   </div>
 <% end %>

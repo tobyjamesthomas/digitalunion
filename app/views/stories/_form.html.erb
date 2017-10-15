@@ -16,10 +16,6 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :score %><br>
-    <%= f.text_field :score %>
-  </div>
-  <div class="field">
     <%= f.label :status %><br>
     <%= f.select :status_id, Status.all.collect {|x| [x.name, x.id]}, {}, :multiple => false %>
   </div>
@@ -29,9 +25,9 @@
   </div>
   <div class="field">
     <%= f.label :body %><br>
-    <%= f.text_field :body %>
+    <%= f.text_area :body %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>
