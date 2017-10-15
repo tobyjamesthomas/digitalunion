@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
 
 <div class="container">
   <div class="show-story">
@@ -58,6 +58,13 @@
           </tbody>
         </table>
       </div>
+    </div>
+
+    <div class="ideas-container">
+      <% @story.ideas.each do |idea| %>
+        <p><%= idea.content %></p>
+      <% end %>
+      <%= render 'ideas/form', story_id: @story.id %>
     </div>
 
   </div>

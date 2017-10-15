@@ -25,7 +25,7 @@ class IdeasController < ApplicationController
   # POST /ideas.json
   def create
     session[:return_to] ||= request.referer
-    
+
     @idea = Idea.new(idea_params)
     @idea.user_id = current_user.id
 
