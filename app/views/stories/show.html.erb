@@ -29,13 +29,13 @@
               <% if @story.status.present? %>
                 <td class="status">
                   <div class="status-text">
-                    <% if @story.status.id == 1 %>
+                    <% if story.status.name == "Escalated" %>
                       <i class="material-icons escalated">flash_on</i>
                       <p>Escalated</p>
-                    <% elsif @story.status.id == 2 %>
+                    <% elsif story.status.name == "Need support" %>
                       <img src="/hands.png"/>
                       <p>Need support</p>
-                    <% elsif @story.status.id == 3 %>
+                    <% elsif story.status.name == "Got help" %>
                       <i class="material-icons got-help">done</i>
                       <p>Got help</p>
                     <% else %>
