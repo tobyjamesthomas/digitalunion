@@ -1,37 +1,40 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @story.title %>
-</p>
+<div class="container">
+	<div class="stories-container">
+        <h1><%= @story.title %></h1>
+        <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Score:</strong>
-  <%= @story.score %>
-</p>
 
-<p>
-  <strong>Status:</strong>
-  <% if @story.status.present? %>
-    <%= @story.status.name %>
-  <% else %>
-    <%= "No status" %>
-  <% end %>
-</p>
+        <p>
+          <strong>Score:</strong>
+          <%= @story.score %>
+        </p>
 
-<p>
-  <strong>Body:</strong>
-  <%= @story.body %>
-</p>
+        <p>
+          <strong>Status:</strong>
+          <% if @story.status.present? %>
+            <%= @story.status.name %>
+          <% else %>
+            <%= "No status" %>
+          <% end %>
+        </p>
 
-<p>
-  <strong>Comments:</strong>
-  <% @story.ideas.each do |idea| %>
-    <p><%= idea.content %></p>
-  <% end %>
-</p>
+        <p>
+          <strong>Body:</strong>
+          <%= @story.body %>
+        </p>
 
-<%= render 'ideas/form' %>
+        <p>
+          <strong>Comments:</strong>
+          <% @story.ideas.each do |idea| %>
+            <p><%= idea.content %></p>
+          <% end %>
+        </p>
 
-<%= link_to 'Edit', edit_story_path(@story) %> |
-<%= link_to 'Back', stories_path %>
+        <%= render 'ideas/form' %>
+
+        <%= link_to 'Edit', edit_story_path(@story) %> |
+        <%= link_to 'Back', stories_path %>
+
+      	</div>
+     </div>
